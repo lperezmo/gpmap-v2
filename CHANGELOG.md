@@ -1,6 +1,33 @@
 # CHANGELOG
 
 
+## v1.0.0 (2026-04-19)
+
+### Code Style
+
+- Apply ruff format to match CI check
+  ([`f04987e`](https://github.com/lperezmo/gpmap-v2/commit/f04987e7de83c73c71f5703bad07eaa8f17ff252))
+
+### Features
+
+- Mark 1.0.0 as the clean-break release baseline
+  ([`cbd854f`](https://github.com/lperezmo/gpmap-v2/commit/cbd854f2bcc738a4b09b9d26370816513d3787c7))
+
+BREAKING CHANGE: gpmap-v2 is a full rewrite of harmslab/gpmap with no wire-compat and no API-compat.
+  The preceding 0.0.1 release was an artifact of python-semantic-release's default initial version;
+  1.0.0 is the intended baseline for the stable v2 surface documented in SCHEMA.md. The
+  encoding_table schema, GenotypePhenotypeMap public attributes, I/O formats, and simulator APIs are
+  locked from this release forward; breaking changes bump the major version.
+
+### Breaking Changes
+
+- Gpmap-v2 is a full rewrite of harmslab/gpmap with no wire-compat and no API-compat. The preceding
+  0.0.1 release was an artifact of python-semantic-release's default initial version; 1.0.0 is the
+  intended baseline for the stable v2 surface documented in SCHEMA.md. The encoding_table schema,
+  GenotypePhenotypeMap public attributes, I/O formats, and simulator APIs are locked from this
+  release forward; breaking changes bump the major version.
+
+
 ## v0.0.1 (2026-04-19)
 
 ### Bug Fixes
