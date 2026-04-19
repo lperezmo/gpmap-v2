@@ -1,0 +1,97 @@
+[project]
+name = "gpmap-v2"
+version = "0.1.0"
+description = "Genotype-phenotype map container and simulators, Rust-accelerated."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Luis Perez", email = "lperezmo@users.noreply.github.com" }]
+keywords = ["genotype", "phenotype", "epistasis", "biology", "fitness-landscape"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Rust",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "numpy >=1.24",
+    "pandas >=2.0",
+    "scipy >=1.10",
+]
+
+[project.optional-dependencies]
+parquet = ["pyarrow >=14"]
+excel = ["openpyxl >=3.1"]
+
+[project.urls]
+Homepage = "https://github.com/lperezmo/gpmap-v2"
+Repository = "https://github.com/lperezmo/gpmap-v2"
+Issues = "https://github.com/lperezmo/gpmap-v2/issues"
+
+[dependency-groups]
+dev = [
+    "pytest >=8",
+    "pytest-benchmark >=4",
+    "pytest-cov >=5",
+    "hypothesis >=6.100",
+    "ruff >=0.6",
+    "mypy >=1.10",
+    "maturin >=1.7",
+    "openpyxl >=3.1",
+]
+
+[build-system]
+requires = ["maturin >=1.7,<2.0"]
+build-backend = "maturin"
+
+[tool.maturin]
+module-name = "gpmap._rust"
+python-source = "python"
+manifest-path = "crates/gpmap-core/Cargo.toml"
+features = ["pyo3/extension-module"]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+tag_format = "v{version}"
+commit_message = "chore(release): v{version}"
+build_command = """
+python -m pip install --upgrade maturin
+maturin build --release
+"""
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "RUF"]
+# N803/N806 flag canonical math symbols (L, K, B, N, M) in a scientific library.
+# E741 flags `l` which is occasionally the cleanest name for a length in tight code.
+ignore = ["E501", "N803", "N806", "E741"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["B905"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["python/gpmap"]
+
+[[tool.mypy.overrides]]
+module = ["scipy.*", "pandas.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning:pytest_benchmark.*",
+]

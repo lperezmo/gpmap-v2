@@ -1,0 +1,141 @@
+# =========================================================================
+# gpmap-v2 .gitignore
+# =========================================================================
+
+# Private notes and tooling
+references/
+.claude/
+CLAUDE.md
+scratchpad.md
+.env
+.envrc
+
+# -------------------------------------------------------------------------
+# Python
+# -------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Compiled extensions (maturin drops these in-place during `maturin develop`)
+*.so
+*.pyd
+*.dylib
+*.dll
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# -------------------------------------------------------------------------
+# Test / coverage / benchmark caches
+# -------------------------------------------------------------------------
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+.benchmarks/
+cover/
+
+# -------------------------------------------------------------------------
+# Lint / type caches
+# -------------------------------------------------------------------------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# -------------------------------------------------------------------------
+# Virtual envs
+# -------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# -------------------------------------------------------------------------
+# uv
+# -------------------------------------------------------------------------
+# uv.lock is intentionally committed for reproducible installs.
+# Nothing else from uv lives in the repo; its cache is global.
+
+# -------------------------------------------------------------------------
+# Rust / Cargo
+# -------------------------------------------------------------------------
+# Cargo.lock IS committed (this crate ships compiled wheels, so pinning
+# transitive deps across the wheel matrix matters).
+target/
+**/target/
+*.rs.bk
+*.pdb
+
+# Cargo per-user overrides
+.cargo/config
+.cargo/config.toml
+
+# -------------------------------------------------------------------------
+# Jupyter
+# -------------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb_meta
+
+# -------------------------------------------------------------------------
+# IDEs
+# -------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vim/
+.netrwhist
+
+# -------------------------------------------------------------------------
+# OS
+# -------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -------------------------------------------------------------------------
+# Docs build outputs
+# -------------------------------------------------------------------------
+docs/_build/
+docs/api/_autosummary/
