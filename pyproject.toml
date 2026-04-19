@@ -61,10 +61,8 @@ features = ["pyo3/extension-module"]
 version_toml = ["pyproject.toml:project.version"]
 tag_format = "v{version}"
 commit_message = "chore(release): v{version}"
-build_command = """
-python -m pip install --upgrade maturin
-maturin build --release
-"""
+# No build_command: the release job only cuts the version and tag.
+# Wheel / sdist building is done in dedicated matrix jobs in release.yml.
 
 [tool.ruff]
 line-length = 100
