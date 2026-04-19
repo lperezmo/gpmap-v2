@@ -22,9 +22,7 @@ def small_mutations(draw) -> tuple[str, dict[int, list[str]]]:
     per_site: list[list[str]] = []
     for _ in range(L):
         size = draw(st.integers(min_value=2, max_value=4))
-        letters = draw(
-            st.lists(ALPHA, min_size=size, max_size=size, unique=True)
-        )
+        letters = draw(st.lists(ALPHA, min_size=size, max_size=size, unique=True))
         per_site.append(sorted(letters))
     wildtype = "".join(draw(st.sampled_from(alpha)) for alpha in per_site)
     mutations = {i: alpha for i, alpha in enumerate(per_site)}
@@ -63,9 +61,7 @@ def test_binary_packed_sum_is_hamming_to_wt(
     sample = all_gs[: min(len(all_gs), 20)]
     table = get_encoding_table(wildtype=wildtype, mutations=mutations)
     packed = genotypes_to_binary_packed(sample, table)
-    expected = np.array(
-        [sum(1 for ci, cg in zip(g, wildtype) if ci != cg) for g in sample]
-    )
+    expected = np.array([sum(1 for ci, cg in zip(g, wildtype) if ci != cg) for g in sample])
     # packed sum should equal the hamming distance in sequence space,
     # since the unary encoding is one bit per non-WT letter chosen.
     assert (packed.sum(axis=1) == expected).all()
@@ -92,8 +88,6 @@ def test_gpm_roundtrip_via_from_dataframe(
         phenotypes=phenotypes,
         mutations=mutations,
     )
-    gpm2 = GenotypePhenotypeMap.from_dataframe(
-        gpm.data, wildtype=wildtype, mutations=mutations
-    )
+    gpm2 = GenotypePhenotypeMap.from_dataframe(gpm.data, wildtype=wildtype, mutations=mutations)
     assert gpm2.genotypes.tolist() == gs
     np.testing.assert_array_equal(gpm2.phenotypes, phenotypes)

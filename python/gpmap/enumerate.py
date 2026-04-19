@@ -29,9 +29,7 @@ def enumerate_genotypes_int(
     """Emit the Cartesian product of per-site alphabet indices as a uint8 2D array."""
     if _r is not None:
         try:
-            return _r.enumerate_genotypes(
-                list(alphabet_sizes), max_genotypes, allow_huge
-            )
+            return _r.enumerate_genotypes(list(alphabet_sizes), max_genotypes, allow_huge)
         except ValueError as exc:
             if "exceeds max_genotypes" in str(exc):
                 raise SpaceTooLargeError(str(exc)) from exc
@@ -77,11 +75,6 @@ def enumerate_genotypes_str(
         else:
             per_site.append(list(alpha))
     sizes = [len(a) for a in per_site]
-    ints = enumerate_genotypes_int(
-        sizes, max_genotypes=max_genotypes, allow_huge=allow_huge
-    )
-    out: list[str] = [
-        "".join(per_site[site][int(row[site])] for site in range(L))
-        for row in ints
-    ]
+    ints = enumerate_genotypes_int(sizes, max_genotypes=max_genotypes, allow_huge=allow_huge)
+    out: list[str] = ["".join(per_site[site][int(row[site])] for site in range(L)) for row in ints]
     return out

@@ -21,16 +21,12 @@ def test_constructor_basic(tiny_binary_gpm: GenotypePhenotypeMap) -> None:
 
 
 def test_default_stdeviations_are_nan() -> None:
-    gpm = GenotypePhenotypeMap(
-        wildtype="AA", genotypes=["AA", "AT"], phenotypes=[0.0, 1.0]
-    )
+    gpm = GenotypePhenotypeMap(wildtype="AA", genotypes=["AA", "AT"], phenotypes=[0.0, 1.0])
     assert np.isnan(gpm.stdeviations).all()
 
 
 def test_default_n_replicates_is_one() -> None:
-    gpm = GenotypePhenotypeMap(
-        wildtype="AA", genotypes=["AA", "AT"], phenotypes=[0.0, 1.0]
-    )
+    gpm = GenotypePhenotypeMap(wildtype="AA", genotypes=["AA", "AT"], phenotypes=[0.0, 1.0])
     assert (gpm.n_replicates == 1).all()
 
 

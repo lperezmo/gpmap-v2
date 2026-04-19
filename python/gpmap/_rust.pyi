@@ -14,11 +14,7 @@ def genotypes_to_binary_packed(
     letter_to_bits_offsets: np.ndarray,
     letter_index: list[dict[str, int]],
 ) -> np.ndarray: ...
-
-def hamming_to_reference(
-    genotypes_int: np.ndarray, reference: np.ndarray
-) -> np.ndarray: ...
-
+def hamming_to_reference(genotypes_int: np.ndarray, reference: np.ndarray) -> np.ndarray: ...
 def enumerate_genotypes(
     alphabet_sizes: list[int],
     max_genotypes: int = ...,

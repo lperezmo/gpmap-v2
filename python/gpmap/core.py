@@ -19,9 +19,7 @@ from .errors import StandardDeviationMap, StandardErrorMap
 from .exceptions import SchemaError
 
 
-def _infer_mutations(
-    wildtype: str, genotypes: list[str]
-) -> dict[int, list[str] | None]:
+def _infer_mutations(wildtype: str, genotypes: list[str]) -> dict[int, list[str] | None]:
     """Infer per-site alphabets from observed genotypes; WT is always included."""
     out: dict[int, list[str] | None] = {}
     L = len(wildtype)
@@ -93,17 +91,13 @@ class GenotypePhenotypeMap:
             raise ValueError("wildtype must be a non-empty string")
         geno_list = [str(g) for g in np.asarray(genotypes, dtype=object).tolist()]
         if any(len(g) != len(wildtype) for g in geno_list):
-            raise ValueError(
-                "all genotypes must have the same length as wildtype"
-            )
+            raise ValueError("all genotypes must have the same length as wildtype")
         n = len(geno_list)
         self._wildtype: str = wildtype
         self._genotypes: np.ndarray = np.asarray(geno_list, dtype=object)
         self._phenotypes: np.ndarray = _coerce_phenotypes(phenotypes)
         if self._phenotypes.shape != (n,):
-            raise ValueError(
-                f"phenotypes shape {self._phenotypes.shape} != genotypes count ({n},)"
-            )
+            raise ValueError(f"phenotypes shape {self._phenotypes.shape} != genotypes count ({n},)")
         self._stdeviations: np.ndarray = _coerce_float(stdeviations, float("nan"), n)
         self._n_replicates: np.ndarray = _coerce_int(n_replicates, 1, n)
 
@@ -116,9 +110,7 @@ class GenotypePhenotypeMap:
             else [str(x) for x in site_labels]
         )
         if len(self._site_labels) != len(wildtype):
-            raise ValueError(
-                f"site_labels length {len(self._site_labels)} != wildtype length"
-            )
+            raise ValueError(f"site_labels length {len(self._site_labels)} != wildtype length")
 
         # Cached lazy artifacts.
         self._encoding_table: pd.DataFrame | None = None
@@ -248,20 +240,14 @@ class GenotypePhenotypeMap:
             # has zero Hamming distance to itself, i.e. first row's genotype.
             # Only use this if mutations is also provided so we can verify.
             if mutations is None:
-                raise ValueError(
-                    "wildtype must be provided (or stored in df.attrs['wildtype'])"
-                )
+                raise ValueError("wildtype must be provided (or stored in df.attrs['wildtype'])")
             raise ValueError("wildtype must be provided")
         return cls(
             wildtype=str(wt),
             genotypes=df["genotypes"].tolist(),
             phenotypes=df["phenotypes"].to_numpy(),
-            stdeviations=(
-                df["stdeviations"].to_numpy() if "stdeviations" in df.columns else None
-            ),
-            n_replicates=(
-                df["n_replicates"].to_numpy() if "n_replicates" in df.columns else None
-            ),
+            stdeviations=(df["stdeviations"].to_numpy() if "stdeviations" in df.columns else None),
+            n_replicates=(df["n_replicates"].to_numpy() if "n_replicates" in df.columns else None),
             mutations=mutations,
             site_labels=site_labels,
             include_binary=include_binary,
