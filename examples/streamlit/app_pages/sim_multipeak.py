@@ -46,16 +46,19 @@ except RuntimeError as exc:
     st.error(f"Peak search failed: {exc}")
     st.stop()
 
-c1, c2 = st.columns(2)
-c1.metric("n genotypes", sim.n)
-c2.metric("peaks", peak_n)
+stats_row(
+    [
+        ("n genotypes", sim.n),
+        ("peaks", peak_n),
+    ]
+)
 
 peak_rows = getattr(sim, "_peak_rows", [])
-st.subheader("Peak genotypes")
+st.markdown("#### Peak genotypes")
 st.code("\n".join(sim.peak_genotypes))
 
-st.subheader("Phenotype vs Hamming distance (peaks in red)")
-st.plotly_chart(peaks_scatter(sim, peak_rows), width='stretch')
+st.markdown("#### Phenotype vs Hamming distance (peaks in red)")
+st.plotly_chart(peaks_scatter(sim, peak_rows), width="stretch")
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

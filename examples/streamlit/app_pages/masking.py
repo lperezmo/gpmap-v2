@@ -32,18 +32,21 @@ full = MountFujiSimulation(
 )
 masked = mask(full, fraction=fraction, rng=rng)
 
-c1, c2, c3 = st.columns(3)
-c1.metric("full n", full.n)
-c2.metric("masked n", masked.gpm.n)
-c3.metric("actual fraction", f"{masked.fraction:.3f}")
+stats_row(
+    [
+        ("full n", full.n),
+        ("masked n", masked.gpm.n),
+        ("actual fraction", f"{masked.fraction:.3f}"),
+    ]
+)
 
 left, right = st.columns(2)
 with left:
     st.caption("Full landscape")
-    st.plotly_chart(phenotype_vs_hamming(full), width='stretch')
+    st.plotly_chart(phenotype_vs_hamming(full), width="stretch")
 with right:
     st.caption("After mask")
-    st.plotly_chart(phenotype_vs_hamming(masked.gpm), width='stretch')
+    st.plotly_chart(phenotype_vs_hamming(masked.gpm), width="stretch")
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

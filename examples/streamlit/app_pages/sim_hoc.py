@@ -20,15 +20,18 @@ with st.container(border=True):
 
 sim = HouseOfCardsSimulation(wildtype=wildtype, mutations=mutations, rng=rng)
 
-c1, c2 = st.columns(2)
-c1.metric("n genotypes", sim.n)
-c2.metric("max phenotype", f"{sim.phenotypes.max():.3f}")
+stats_row(
+    [
+        ("n genotypes", sim.n),
+        ("max phenotype", f"{sim.phenotypes.max():.3f}"),
+    ]
+)
 
-st.subheader("Phenotype vs Hamming distance")
-st.plotly_chart(phenotype_vs_hamming(sim), width='stretch')
+st.markdown("#### Phenotype vs Hamming distance")
+st.plotly_chart(phenotype_vs_hamming(sim), width="stretch")
 
-st.subheader("Phenotype distribution")
-st.plotly_chart(phenotype_histogram(sim), width='stretch')
+st.markdown("#### Phenotype distribution")
+st.plotly_chart(phenotype_histogram(sim), width="stretch")
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

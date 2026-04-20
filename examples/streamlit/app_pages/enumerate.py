@@ -40,7 +40,7 @@ genotypes = enumerate_genotypes_str(wildtype, mutations)
 st.code("\n".join(genotypes[:32]) + ("\n..." if len(genotypes) > 32 else ""))
 
 st.divider()
-st.subheader("The size guard")
+st.markdown("#### The size guard")
 st.markdown(
     "The default `max_genotypes` is **2**^28 (~268M rows). Ask for more without "
     "`allow_huge=True` and you get a hard error before numpy ever tries to "

@@ -32,15 +32,18 @@ sim = RandomPhenotypesSimulation(
     wildtype=wildtype, mutations=mutations, low=low, high=high, rng=rng
 )
 
-c1, c2 = st.columns(2)
-c1.metric("n genotypes", sim.n)
-c2.metric("range", f"[{low}, {high}]")
+stats_row(
+    [
+        ("n genotypes", sim.n),
+        ("range", f"[{low}, {high}]"),
+    ]
+)
 
-st.subheader("Phenotype vs Hamming distance")
-st.plotly_chart(phenotype_vs_hamming(sim), width='stretch')
+st.markdown("#### Phenotype vs Hamming distance")
+st.plotly_chart(phenotype_vs_hamming(sim), width="stretch")
 
-st.subheader("Phenotype distribution")
-st.plotly_chart(phenotype_histogram(sim), width='stretch')
+st.markdown("#### Phenotype distribution")
+st.plotly_chart(phenotype_histogram(sim), width="stretch")
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

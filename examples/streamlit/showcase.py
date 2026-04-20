@@ -123,7 +123,7 @@ with st.sidebar:
     )
     st.caption(f"package: gpmap-v2 {gpmap.__version__}")
 
-st.subheader(page.title)
+st.markdown(f"#### {page.title}")
 page.run()
 
 st.divider()

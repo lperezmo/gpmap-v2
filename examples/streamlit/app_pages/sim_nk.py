@@ -26,16 +26,19 @@ with st.container(border=True):
 
 sim = NKSimulation(wildtype=wildtype, mutations=mutations, K=K, rng=rng)
 
-c1, c2, c3 = st.columns(3)
-c1.metric("n genotypes", sim.n)
-c2.metric("K", K)
-c3.metric("max phenotype", f"{sim.phenotypes.max():.3f}")
+stats_row(
+    [
+        ("n genotypes", sim.n),
+        ("K", K),
+        ("max phenotype", f"{sim.phenotypes.max():.3f}"),
+    ]
+)
 
-st.subheader("Phenotype vs Hamming distance")
-st.plotly_chart(phenotype_vs_hamming(sim), width='stretch')
+st.markdown("#### Phenotype vs Hamming distance")
+st.plotly_chart(phenotype_vs_hamming(sim), width="stretch")
 
-st.subheader("Phenotype distribution")
-st.plotly_chart(phenotype_histogram(sim), width='stretch')
+st.markdown("#### Phenotype distribution")
+st.plotly_chart(phenotype_histogram(sim), width="stretch")
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

@@ -32,21 +32,24 @@ gpm = GenotypePhenotypeMap(
     mutations=sim.mutations,
 )
 
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("wildtype", gpm.wildtype)
-c2.metric("length (L)", gpm.length)
-c3.metric("genotypes (n)", gpm.n)
-c4.metric("binary bits", gpm.binary_packed.shape[1])
+stats_row(
+    [
+        ("wildtype", gpm.wildtype),
+        ("length (L)", gpm.length),
+        ("genotypes (n)", gpm.n),
+        ("binary bits", gpm.binary_packed.shape[1]),
+    ]
+)
 
-st.subheader(".data  (pandas view)")
+st.markdown("#### .data  (pandas view)")
 st.dataframe(gpm.data, width="stretch", hide_index=True)
 
 left, right = st.columns(2)
 with left:
-    st.subheader(".phenotypes")
+    st.markdown("#### .phenotypes")
     st.code(np.array2string(gpm.phenotypes, precision=3, max_line_width=60))
 with right:
-    st.subheader(".n_mutations")
+    st.markdown("#### .n_mutations")
     st.code(np.array2string(gpm.n_mutations, max_line_width=60))
 
 with st.expander("Code", icon=":material/code:"):

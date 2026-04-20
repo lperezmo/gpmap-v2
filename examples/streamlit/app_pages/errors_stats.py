@@ -30,7 +30,7 @@ mutations = {i: ["0", "1"] for i in range(length)}
 sim = MountFujiSimulation(wildtype="0" * length, mutations=mutations, field_strength=1.0, rng=rng)
 sim.set_stdeviations(sigma)
 
-st.subheader("Error bars with upper_transform / lower_transform")
+st.markdown("#### Error bars with upper_transform / lower_transform")
 st.markdown(
     "Matplotlib and plotly want a *positive offset* from the bar height to "
     "the upper/lower bound. `upper_transform` and `lower_transform` do that "
@@ -58,9 +58,9 @@ fig.update_layout(
     height=360,
     margin=dict(l=40, r=20, t=20, b=40),
 )
-st.plotly_chart(fig, width='stretch')
+st.plotly_chart(fig, width="stretch")
 
-st.subheader("StandardDeviationMap vs StandardErrorMap")
+st.markdown("#### StandardDeviationMap vs StandardErrorMap")
 stdev_map = StandardDeviationMap(sim)
 err_map = StandardErrorMap(sim)
 c1, c2 = st.columns(2)
@@ -71,12 +71,15 @@ with c2:
     st.caption("StandardErrorMap.upper  (std / sqrt(n_replicates))")
     st.code(np.array2string(err_map.upper[:8], precision=3))
 
-st.subheader("Unbiased statistics")
+st.markdown("#### Unbiased statistics")
 samples = rng.normal(loc=0.0, scale=sigma, size=(sim.n, 8))
-c1, c2, c3 = st.columns(3)
-c1.metric("unbiased_std", f"{float(unbiased_std(samples.ravel())):.4f}")
-c2.metric("unbiased_var", f"{float(unbiased_var(samples.ravel())):.4f}")
-c3.metric("c4(n=8)", f"{c4_correction(8):.4f}")
+stats_row(
+    [
+        ("unbiased_std", f"{float(unbiased_std(samples.ravel())):.4f}"),
+        ("unbiased_var", f"{float(unbiased_var(samples.ravel())):.4f}"),
+        ("c4(n=8)", f"{c4_correction(8):.4f}"),
+    ]
+)
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

@@ -21,10 +21,10 @@ with st.container(border=True):
     )
 
 table = get_encoding_table(wildtype, mutations)
-st.subheader("encoding_table")
+st.markdown("#### encoding_table")
 st.dataframe(table, width="stretch", hide_index=True)
 
-st.subheader("genotypes_to_binary_packed")
+st.markdown("#### genotypes_to_binary_packed")
 st.markdown(
     "Pass any list of genotype strings through the same table to get a "
     "`(n_genotypes, n_bits)` uint8 matrix. This is the fast path every "

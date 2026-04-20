@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gpmap
 import streamlit as st
+from utils.ui import stats_row
 
 st.markdown(
     """
@@ -14,12 +15,15 @@ hot paths for encoding, enumeration, and Hamming-distance work.
 """
 )
 
-c1, c2, c3 = st.columns(3)
-c1.metric("Version", gpmap.__version__)
-c2.metric("Schema", "locked (SCHEMA.md)")
-c3.metric("Python", "3.10+")
+stats_row(
+    [
+        ("Version", gpmap.__version__),
+        ("Schema", "locked (SCHEMA.md)"),
+        ("Python", "3.10+"),
+    ]
+)
 
-st.subheader("What this app covers")
+st.markdown("#### What this app covers")
 st.markdown(
     """
 - **Core** - the `GenotypePhenotypeMap` container, the encoding table, and
@@ -34,7 +38,7 @@ so you can copy it into a notebook and keep going.
 """
 )
 
-st.subheader("Quick start")
+st.markdown("#### Quick start")
 st.code(
     """from gpmap import GenotypePhenotypeMap
 
@@ -52,7 +56,7 @@ gpm.encoding_table  # pandas DataFrame per SCHEMA.md
     language="python",
 )
 
-st.subheader("Links")
+st.markdown("#### Links")
 st.markdown(
     """
 - [GitHub](https://github.com/lperezmo/gpmap-v2)
