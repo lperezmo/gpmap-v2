@@ -1,7 +1,7 @@
 # gpmap-v2 streamlit demo
 
 Interactive, page-per-topic tour of the `gpmap-v2` API. Half show-and-tell, half
-documentation. Hosted at [gpmap.streamlit.app](https://gpmap.streamlit.app).
+documentation. Hosted at [gpmap-v2.streamlit.app](https://gpmap-v2.streamlit.app).
 
 ## Run locally
 
