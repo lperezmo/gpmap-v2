@@ -32,10 +32,10 @@ c2.metric("K", K)
 c3.metric("max phenotype", f"{sim.phenotypes.max():.3f}")
 
 st.subheader("Phenotype vs Hamming distance")
-st.plotly_chart(phenotype_vs_hamming(sim), use_container_width=True)
+st.plotly_chart(phenotype_vs_hamming(sim), width='stretch')
 
 st.subheader("Phenotype distribution")
-st.plotly_chart(phenotype_histogram(sim), use_container_width=True)
+st.plotly_chart(phenotype_histogram(sim), width='stretch')
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

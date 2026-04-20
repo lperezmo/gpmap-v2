@@ -40,10 +40,10 @@ c3.metric("actual fraction", f"{masked.fraction:.3f}")
 left, right = st.columns(2)
 with left:
     st.caption("Full landscape")
-    st.plotly_chart(phenotype_vs_hamming(full), use_container_width=True)
+    st.plotly_chart(phenotype_vs_hamming(full), width='stretch')
 with right:
     st.caption("After mask")
-    st.plotly_chart(phenotype_vs_hamming(masked.gpm), use_container_width=True)
+    st.plotly_chart(phenotype_vs_hamming(masked.gpm), width='stretch')
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

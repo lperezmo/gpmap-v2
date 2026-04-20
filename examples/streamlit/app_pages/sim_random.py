@@ -37,10 +37,10 @@ c1.metric("n genotypes", sim.n)
 c2.metric("range", f"[{low}, {high}]")
 
 st.subheader("Phenotype vs Hamming distance")
-st.plotly_chart(phenotype_vs_hamming(sim), use_container_width=True)
+st.plotly_chart(phenotype_vs_hamming(sim), width='stretch')
 
 st.subheader("Phenotype distribution")
-st.plotly_chart(phenotype_histogram(sim), use_container_width=True)
+st.plotly_chart(phenotype_histogram(sim), width='stretch')
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

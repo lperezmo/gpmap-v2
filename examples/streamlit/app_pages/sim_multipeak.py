@@ -55,7 +55,7 @@ st.subheader("Peak genotypes")
 st.code("\n".join(sim.peak_genotypes))
 
 st.subheader("Phenotype vs Hamming distance (peaks in red)")
-st.plotly_chart(peaks_scatter(sim, peak_rows), use_container_width=True)
+st.plotly_chart(peaks_scatter(sim, peak_rows), width='stretch')
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

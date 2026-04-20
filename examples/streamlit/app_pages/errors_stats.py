@@ -58,7 +58,7 @@ fig.update_layout(
     height=360,
     margin=dict(l=40, r=20, t=20, b=40),
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 
 st.subheader("StandardDeviationMap vs StandardErrorMap")
 stdev_map = StandardDeviationMap(sim)
