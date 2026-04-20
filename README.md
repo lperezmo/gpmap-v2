@@ -4,6 +4,9 @@
 [![PyPI](https://img.shields.io/pypi/v/gpmap-v2.svg)](https://pypi.org/project/gpmap-v2/)
 [![Python](https://img.shields.io/pypi/pyversions/gpmap-v2.svg)](https://pypi.org/project/gpmap-v2/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gpmap.streamlit.app)
+
+Live interactive tour: [gpmap.streamlit.app](https://gpmap.streamlit.app) (source under [`examples/streamlit/`](examples/streamlit/)).
 
 A typed, Rust-accelerated container and simulator toolkit for genotype-phenotype maps.
 
