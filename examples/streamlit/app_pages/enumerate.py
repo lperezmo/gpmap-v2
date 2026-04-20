@@ -22,7 +22,12 @@ with st.container(border=True):
     with c2:
         length = st.slider("Length", 2, 6, value=3)
     with c3:
-        alpha_size = st.slider("Letters per site", 2, len(source), value=min(3, len(source)))
+        if len(source) > 2:
+            alpha_size = st.slider("Letters per site", 2, len(source), value=min(3, len(source)))
+        else:
+            st.markdown("**Letters per site**")
+            st.caption(f"{len(source)} (fixed for {kind})")
+            alpha_size = len(source)
 
 letters = list(source[:alpha_size])
 wildtype = letters[0] * length
