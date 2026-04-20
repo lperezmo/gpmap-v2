@@ -10,6 +10,7 @@ import numpy as np
 import streamlit as st
 from gpmap import read_csv, read_json, read_pickle, to_csv, to_json, to_pickle
 from gpmap.simulate import MountFujiSimulation
+from utils.ui import stats_row
 
 st.markdown(
     "`gpmap-v2` round-trips cleanly through JSON, CSV + sidecar metadata, "

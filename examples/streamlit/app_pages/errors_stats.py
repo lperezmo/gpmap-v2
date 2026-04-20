@@ -9,6 +9,7 @@ from gpmap import StandardDeviationMap, StandardErrorMap, lower_transform, upper
 from gpmap.simulate import MountFujiSimulation
 from gpmap.stats import c4_correction, unbiased_std, unbiased_var
 from utils.controls import rng_seed_input
+from utils.ui import stats_row
 
 st.markdown(
     "`gpmap-v2` ships matplotlib/plotly-friendly error-bar transforms, two "

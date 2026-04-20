@@ -6,6 +6,7 @@ import streamlit as st
 from gpmap.simulate import MountFujiSimulation
 from utils.charts import phenotype_histogram, phenotype_vs_hamming
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
+from utils.ui import stats_row
 
 st.markdown(
     "**Mount Fuji** is a smooth, single-peak landscape: phenotype is a linear "

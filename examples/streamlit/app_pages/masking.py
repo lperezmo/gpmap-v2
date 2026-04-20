@@ -6,6 +6,7 @@ import streamlit as st
 from gpmap.simulate import MountFujiSimulation, mask
 from utils.charts import phenotype_vs_hamming
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
+from utils.ui import stats_row
 
 st.markdown(
     "`mask(gpm, fraction)` returns a `MaskedGPM(fraction, gpm)` NamedTuple "

@@ -6,6 +6,7 @@ import streamlit as st
 from gpmap.simulate import NKSimulation
 from utils.charts import phenotype_histogram, phenotype_vs_hamming
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
+from utils.ui import stats_row
 
 st.markdown(
     "**Kauffman's NK** model places a random fitness contribution at every "

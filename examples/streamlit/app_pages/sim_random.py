@@ -6,6 +6,7 @@ import streamlit as st
 from gpmap.simulate import RandomPhenotypesSimulation
 from utils.charts import phenotype_histogram, phenotype_vs_hamming
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
+from utils.ui import stats_row
 
 st.markdown(
     "**Random** phenotypes, no landscape structure at all. Useful as a "

@@ -6,6 +6,7 @@ import streamlit as st
 from gpmap.simulate import MultiPeakMountFujiSimulation
 from utils.charts import peaks_scatter
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
+from utils.ui import stats_row
 
 st.markdown(
     "**Multi-peak Fuji** takes the max over `peak_n` single-peak Fujis, "
