@@ -21,7 +21,7 @@ def stat(label: str, value: object) -> None:
 def stats_row(items: list[tuple[str, object]]) -> None:
     """Render a horizontal row of `stat` tiles."""
     cols = st.columns(len(items))
-    for col, (label, value) in zip(cols, items):
+    for col, (label, value) in zip(cols, items, strict=False):
         with col:
             stat(label, value)
 
@@ -31,3 +31,31 @@ def section(title: str, caption: str | None = None) -> None:
     st.markdown(f"#### {title}")
     if caption:
         st.caption(caption)
+
+
+def render_landscape(sim) -> None:
+    """Render phenotype landscape charts for a simulation.
+
+    Shows a 3D surface as the primary visual when the space is small enough
+    (N <= 64, biallelic). A 2D heatmap is shown below the surface, or on its
+    own when the landscape is too large for a surface (up to N=512).
+    """
+    from utils.charts import phenotype_landscape_heatmap, phenotype_landscape_surface
+
+    surface = phenotype_landscape_surface(sim)
+    heatmap = phenotype_landscape_heatmap(sim)
+
+    if surface is None and heatmap is None:
+        return
+
+    st.markdown("#### Phenotype landscape")
+    if surface is not None:
+        st.plotly_chart(surface, width="stretch")
+    if heatmap is not None:
+        if surface is not None:
+            st.markdown("**2D view**")
+        else:
+            st.caption(
+                "Genotype space split into two halves; colour encodes phenotype."
+            )
+        st.plotly_chart(heatmap, width="stretch")

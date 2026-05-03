@@ -6,7 +6,7 @@ import streamlit as st
 from gpmap.simulate import NKSimulation
 from utils.charts import phenotype_histogram, phenotype_vs_hamming
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
-from utils.ui import stats_row
+from utils.ui import render_landscape, stats_row
 
 st.markdown(
     "**Kauffman's NK** model places a random fitness contribution at every "
@@ -18,10 +18,10 @@ st.markdown(
 with st.container(border=True):
     st.caption("Space")
     wildtype, mutations = pick_wildtype_and_alphabet("nk", default_length=6)
-    max_K = max(len(wildtype) - 1, 1)
+    max_k = max(len(wildtype) - 1, 1)
     c1, c2 = st.columns(2)
     with c1:
-        K = st.slider("K (neighborhood size)", 0, max_K, value=min(2, max_K))
+        K = st.slider("K (neighborhood size)", 0, max_k, value=min(2, max_k))
     with c2:
         rng = rng_seed_input("nk")
 
@@ -40,6 +40,8 @@ st.plotly_chart(phenotype_vs_hamming(sim), width="stretch")
 
 st.markdown("#### Phenotype distribution")
 st.plotly_chart(phenotype_histogram(sim), width="stretch")
+
+render_landscape(sim)
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

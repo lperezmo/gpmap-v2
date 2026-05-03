@@ -6,7 +6,7 @@ import streamlit as st
 from gpmap.simulate import MultiPeakMountFujiSimulation
 from utils.charts import peaks_scatter
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
-from utils.ui import stats_row
+from utils.ui import render_landscape, stats_row
 
 st.markdown(
     "**Multi-peak Fuji** takes the max over `peak_n` single-peak Fujis, "
@@ -60,6 +60,8 @@ st.code("\n".join(sim.peak_genotypes))
 
 st.markdown("#### Phenotype vs Hamming distance (peaks in red)")
 st.plotly_chart(peaks_scatter(sim, peak_rows), width="stretch")
+
+render_landscape(sim)
 
 with st.expander("Code", icon=":material/code:"):
     st.code(

@@ -6,7 +6,7 @@ import streamlit as st
 from gpmap.simulate import HouseOfCardsSimulation
 from utils.charts import phenotype_histogram, phenotype_vs_hamming
 from utils.controls import pick_wildtype_and_alphabet, rng_seed_input
-from utils.ui import stats_row
+from utils.ui import render_landscape, stats_row
 
 st.markdown(
     "**House of Cards** is NK with `K = n_bits - 1`: every site sees the full "
@@ -33,6 +33,8 @@ st.plotly_chart(phenotype_vs_hamming(sim), width="stretch")
 
 st.markdown("#### Phenotype distribution")
 st.plotly_chart(phenotype_histogram(sim), width="stretch")
+
+render_landscape(sim)
 
 with st.expander("Code", icon=":material/code:"):
     st.code(
