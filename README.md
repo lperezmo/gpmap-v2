@@ -14,7 +14,7 @@ gpmap-v2 is a clean-break rewrite of `harmslab/gpmap`. It exposes the same conce
 
 ## Why
 
-- **Fast.** String-encoded genotypes are replaced with packed `uint8` matrices. The encoding step (`genotypes_to_binary`) runs rayon-parallel in Rust, delivering two orders of magnitude over the pure-Python v1 at L >= 16.
+- **Fast.** String-encoded genotypes are replaced with packed `uint8` matrices. The encoding step (`genotypes_to_binary`) runs rayon-parallel in Rust. Construction is 5x faster than v1 at L=16 (65k genotypes), and `binary_packed` is a free cached lookup afterward -- no repeated re-encoding on each access.
 - **Typed.** Full type hints, mypy-checked, strict mode.
 - **Safe.** Cartesian-product enumeration is size-guarded out of the box (`SpaceTooLargeError`). No more silent 10^26 allocations.
 - **Stable surface.** The container and `encoding_table` schema are locked in [`SCHEMA.md`](SCHEMA.md) for downstream consumers.
@@ -95,6 +95,26 @@ The full list of stable exports lives in `gpmap.__all__`. The ones downstream co
 - All simulators under `gpmap.simulate`
 
 The load-bearing schema contract (column names, dtypes, invariants) is in [`SCHEMA.md`](SCHEMA.md). Breaking changes to that document bump the major version.
+
+## Benchmarks vs v1
+
+Measured on Windows 11 against `gpmap==0.7.0`. Full biallelic space (`AT` alphabet),
+`timeit` best-of-5. See [`benchmarks/vs_v1.py`](benchmarks/vs_v1.py) for scripts and setup.
+
+v2 encodes eagerly at construction (Rust, parallel). v1 encodes lazily, so construction
+is cheaper but binary access costs extra on every call. The table below times construction
+including encoding for v2 and just object setup for v1.
+
+| L | genotypes | v1 construct (ms) | v2 construct (ms) | speedup |
+|---|-----------|------------------|------------------|---------|
+| 8 | 256 | 2.14 | 6.23 | 0.3x |
+| 10 | 1,024 | 4.48 | 7.99 | 0.6x |
+| 12 | 4,096 | 14.57 | 10.53 | 1.4x |
+| 14 | 16,384 | 59.30 | 18.68 | 3.2x |
+| 16 | 65,536 | 258.18 | 51.19 | 5.0x |
+
+`binary_packed` access after construction: v2 ~0 ms (cached); v1 `binary` access at L=16
+costs ~11 ms per call (re-encoded each time from the underlying pandas column).
 
 ## Development
 
