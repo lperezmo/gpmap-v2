@@ -1,0 +1,72 @@
+[project]
+site_name = "gpmap-v2"
+site_description = "Typed, Rust-accelerated container and simulator toolkit for genotype-phenotype maps."
+site_url = "https://lperezmo.github.io/gpmap-v2/"
+repo_url = "https://github.com/lperezmo/gpmap-v2"
+repo_name = "lperezmo/gpmap-v2"
+edit_uri = "edit/main/docs/"
+extra_css = ["stylesheets/extra.css"]
+nav = [
+    { "Home" = "index.md" },
+    { "Quickstart" = "quickstart.md" },
+    { "Installation" = "installation.md" },
+    { "Concepts" = [
+        { "Genotype-phenotype maps" = "concepts/genotype-phenotype-maps.md" },
+        { "Encoding table" = "concepts/encoding-table.md" },
+        { "Schema contract" = "concepts/schema-contract.md" },
+    ] },
+    { "Guides" = [
+        { "Loading and saving" = "guides/loading-saving.md" },
+        { "Simulators" = "guides/simulators.md" },
+        { "Missing genotypes" = "guides/missing-genotypes.md" },
+    ] },
+    { "Reference" = [
+        { "GenotypePhenotypeMap" = "reference/core.md" },
+        { "Encoding" = "reference/encoding.md" },
+        { "Enumeration" = "reference/enumerate.md" },
+        { "I/O" = "reference/io.md" },
+        { "Simulators" = "reference/simulate.md" },
+        { "Statistics" = "reference/stats.md" },
+        { "Error transforms" = "reference/errors.md" },
+        { "Exceptions" = "reference/exceptions.md" },
+        { "Changelog" = "reference/changelog.md" },
+    ] },
+]
+
+[project.theme]
+variant = "modern"
+features = [
+    "navigation.tabs",
+    "navigation.tabs.sticky",
+    "navigation.sections",
+    "navigation.top",
+    "navigation.footer",
+    "navigation.indexes",
+    "navigation.tracking",
+    "content.action.edit",
+    "content.action.view",
+    "content.code.copy",
+    "search.highlight",
+    "search.suggest",
+    "toc.follow",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
