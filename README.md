@@ -1,6 +1,7 @@
 # gpmap-v2
 
 [![CI](https://github.com/lperezmo/gpmap-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/lperezmo/gpmap-v2/actions/workflows/ci.yml)
+[![Documentation](https://github.com/lperezmo/gpmap-v2/actions/workflows/docs.yml/badge.svg)](https://lperezmo.github.io/gpmap-v2/)
 [![PyPI](https://img.shields.io/pypi/v/gpmap-v2.svg)](https://pypi.org/project/gpmap-v2/)
 [![Python](https://img.shields.io/pypi/pyversions/gpmap-v2.svg)](https://pypi.org/project/gpmap-v2/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
