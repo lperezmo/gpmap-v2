@@ -7,6 +7,9 @@ description: "Schema-locked DataFrame describing how each (site, mutation letter
 
 The encoding table is a pandas DataFrame, one row per `(site, mutation_letter)` combination, that says how a string genotype maps to its packed binary form. It is the load-bearing contract between `gpmap-v2` and any package that builds models on top of it.
 
+![The encoding_table rendered for an L=4 biallelic map: one row per site/mutation with its binary slot](../assets/encoding-table-light.png#only-light)
+![The encoding_table rendered for an L=4 biallelic map: one row per site/mutation with its binary slot](../assets/encoding-table-dark.png#only-dark)
+
 ## Schema
 
 | Column | dtype | Nullable | Meaning |
@@ -101,5 +104,8 @@ packed = genotypes_to_binary_packed(["ATG", "ATC"], table)  # shape (2, n_bits),
 ```
 
 This is the fastest path from a list of genotype strings to the packed binary representation. Unknown letters raise `UnknownLetterError`. Under the hood this dispatches to the Rust `genotypes_to_binary_packed` kernel, parallelized over rows with rayon.
+
+![Each genotype string encoded as a row of binary bits, shown as a matrix of filled and empty cells](../assets/encoding-matrix-light.png#only-light)
+![Each genotype string encoded as a row of binary bits, shown as a matrix of filled and empty cells](../assets/encoding-matrix-dark.png#only-dark)
 
 The string-form sibling `genotypes_to_binary(...)` returns a NumPy object array of `'0'`/`'1'` strings. Prefer the packed form for any hot path; the string form is kept for back-compat with v1 consumers.

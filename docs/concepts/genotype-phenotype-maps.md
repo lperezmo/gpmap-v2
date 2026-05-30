@@ -7,6 +7,11 @@ description: "The conceptual model behind GenotypePhenotypeMap: wildtype, per-si
 
 A genotype-phenotype map (GPM) is a table of measured organisms. Each row holds a sequence (the genotype) and one or more measured properties (the phenotype, plus optional standard deviation and replicate count). `gpmap-v2` wraps that table in a typed container that adds several derived views: per-site mutation counts, a binary encoding for high-order models, and a pandas DataFrame view for analysis.
 
+![A smooth additive landscape next to a rugged one, both drawn as genotype graphs colored by phenotype](../assets/ruggedness-graph-light.png#only-light)
+![A smooth additive landscape next to a rugged one, both drawn as genotype graphs colored by phenotype](../assets/ruggedness-graph-dark.png#only-dark)
+
+Laying the genotypes out by Hamming distance and coloring by phenotype turns the table into a landscape you can read at a glance: a smooth map slopes toward one peak, a rugged one breaks into many.
+
 ## The five fields
 
 A `GenotypePhenotypeMap` is defined by five inputs:

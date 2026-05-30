@@ -7,6 +7,11 @@ description: "Find all unobserved genotypes in the full Cartesian product. Respe
 
 For a partial measurement, you often want the list of genotypes in the full Cartesian product of per-site alphabets that are not in your observed set. `gpm.get_missing_genotypes()` returns that complement.
 
+![A genotype graph with observed nodes filled and missing genotypes drawn hollow](../assets/missing-genotypes-light.png#only-light)
+![A genotype graph with observed nodes filled and missing genotypes drawn hollow](../assets/missing-genotypes-dark.png#only-dark)
+
+The hollow nodes are the genotypes `get_missing_genotypes()` returns: present in the full combinatorial space but absent from the measured set.
+
 ```python
 from gpmap import GenotypePhenotypeMap
 

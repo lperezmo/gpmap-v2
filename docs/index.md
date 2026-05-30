@@ -7,6 +7,9 @@ description: "Typed, Rust-accelerated container and simulator toolkit for genoty
 
 A typed, Rust-accelerated container and simulator toolkit for genotype-phenotype maps. Clean-break rewrite of [`harmslab/gpmap`](https://github.com/harmslab/gpmap), with a locked schema, vectorized hot paths, and a PyO3 core for the operations that used to be inner Python loops.
 
+![An L=4 biallelic genotype-phenotype map drawn as a hypercube laid out by Hamming distance, nodes colored by phenotype](assets/hypercube-light.png#only-light)
+![An L=4 biallelic genotype-phenotype map drawn as a hypercube laid out by Hamming distance, nodes colored by phenotype](assets/hypercube-dark.png#only-dark)
+
 <div class="grid cards" markdown>
 
 -   :material-rocket-launch: **Quickstart**
