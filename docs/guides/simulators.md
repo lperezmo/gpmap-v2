@@ -41,6 +41,9 @@ sim.phenotypes.shape  # (16,)
 
 Rough phenotype range: `[0, 1]`. Higher K means rougher landscapes with more local optima.
 
+![NK landscapes at K=0 (smooth, additive) versus K=3 (rugged, many local optima)](../assets/nk-panel-light.png#only-light)
+![NK landscapes at K=0 (smooth, additive) versus K=3 (rugged, many local optima)](../assets/nk-panel-dark.png#only-dark)
+
 ## MountFujiSimulation
 
 A single-peak additive landscape with optional Gaussian or uniform roughness. The peak is at the wildtype.
@@ -107,6 +110,14 @@ sim = HouseOfCardsSimulation(
 ```
 
 No tunable knobs beyond `rng`; the K is fixed by the geometry.
+
+![Phenotype versus Hamming distance for a smooth Mount Fuji landscape against a fully random House of Cards landscape](../assets/landscape-compare-light.png#only-light)
+![Phenotype versus Hamming distance for a smooth Mount Fuji landscape against a fully random House of Cards landscape](../assets/landscape-compare-dark.png#only-dark)
+
+The same contrast on the graph itself: a single-peak Fuji funnels toward one optimum, while House of Cards scatters local peaks (red rings) across the map.
+
+![Mount Fuji versus House of Cards drawn as genotype graphs, local peaks ringed in red](../assets/landscape-graphs-light.png#only-light)
+![Mount Fuji versus House of Cards drawn as genotype graphs, local peaks ringed in red](../assets/landscape-graphs-dark.png#only-dark)
 
 ## RandomPhenotypesSimulation
 

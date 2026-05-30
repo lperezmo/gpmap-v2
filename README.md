@@ -13,6 +13,13 @@ A typed, Rust-accelerated container and simulator toolkit for genotype-phenotype
 
 gpmap-v2 is a clean-break rewrite of `harmslab/gpmap`. It exposes the same conceptual model (a `GenotypePhenotypeMap` backed by a pandas DataFrame) with a locked schema, vectorized hot paths, and a PyO3 Rust core for the operations that used to be inner Python loops.
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/lperezmo/gpmap-v2/main/docs/assets/hypercube-dark.png">
+    <img alt="An L=4 biallelic genotype-phenotype map drawn as a hypercube laid out by Hamming distance, nodes colored by phenotype" src="https://raw.githubusercontent.com/lperezmo/gpmap-v2/main/docs/assets/hypercube-light.png" width="560">
+  </picture>
+</p>
+
 ## Why
 
 - **Fast.** String-encoded genotypes are replaced with packed `uint8` matrices. The encoding step (`genotypes_to_binary`) runs rayon-parallel in Rust. Construction is 5x faster than v1 at L=16 (65k genotypes), and `binary_packed` is a free cached lookup afterward -- no repeated re-encoding on each access.
