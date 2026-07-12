@@ -22,7 +22,7 @@ pub fn hamming_to_reference<'py>(
     let g_flat: Vec<u8> = g.iter().copied().collect();
     let r_vec: Vec<u8> = r.iter().copied().collect();
 
-    let out: Vec<u32> = py.allow_threads(|| {
+    let out: Vec<u32> = py.detach(|| {
         let mut out = vec![0u32; n];
         out.par_iter_mut().enumerate().for_each(|(i, slot)| {
             let row = &g_flat[i * n_sites..(i + 1) * n_sites];
@@ -36,5 +36,5 @@ pub fn hamming_to_reference<'py>(
         });
         out
     });
-    Ok(ndarray::Array1::from_vec(out).into_pyarray_bound(py))
+    Ok(ndarray::Array1::from_vec(out).into_pyarray(py))
 }

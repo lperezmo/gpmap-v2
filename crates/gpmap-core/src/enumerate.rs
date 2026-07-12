@@ -54,7 +54,7 @@ pub fn enumerate_genotypes<'py>(
         strides[i] = strides[i + 1] * alphabet_sizes[i + 1];
     }
 
-    let out_flat: Vec<u8> = py.allow_threads(|| {
+    let out_flat: Vec<u8> = py.detach(|| {
         let mut out = vec![0u8; n * l];
         for row in 0..n {
             let base = row * l;
@@ -70,5 +70,5 @@ pub fn enumerate_genotypes<'py>(
 
     let arr = ndarray::Array2::from_shape_vec((n, l), out_flat)
         .map_err(|e| PyValueError::new_err(e.to_string()))?;
-    Ok(arr.into_pyarray_bound(py))
+    Ok(arr.into_pyarray(py))
 }
