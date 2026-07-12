@@ -110,7 +110,7 @@ fn genotypes_to_binary_packed<'py>(
     }
 
     // Release the GIL and run the hot loop in parallel.
-    let output: Vec<u8> = py.allow_threads(|| -> Result<Vec<u8>, String> {
+    let output: Vec<u8> = py.detach(|| -> Result<Vec<u8>, String> {
         if n_bits == 0 {
             // Nothing to pack (all sites frozen). Still validate letters.
             for (i, row) in byte_rows.iter().enumerate() {
@@ -155,7 +155,7 @@ fn genotypes_to_binary_packed<'py>(
     // Hand ownership back to numpy.
     let arr = ndarray::Array2::from_shape_vec((n, n_bits), output)
         .map_err(|e| PyValueError::new_err(e.to_string()))?;
-    Ok(arr.into_pyarray_bound(py))
+    Ok(arr.into_pyarray(py))
 }
 
 /// Hamming distance from each row of `genotypes_int` to `reference`.
